@@ -12,16 +12,10 @@ public class Dialogcontroller : MonoBehaviour {
         public Button NoButton;
         //説明文テキスト
         [SerializeField] Text caption;
-        //イメージ画像
-        [SerializeField]
-        Sprite ModelImage;
-        public Image AnimalImage;
 
     // Start is called before the first frame update
     void Start()
     {
-        AnimalImage = GetComponent<Image>();
-        AnimalImage.sprite = ModelImage;
 
     }
 
@@ -39,11 +33,5 @@ public class Dialogcontroller : MonoBehaviour {
     public void ShowDialog(string message)
     {
         caption.text = message;
-        Debug.Log("text" + message);
-    }
-
-    public void ShowImage(PurchasingInformation PurchaseProcessing)
-    {
-        PurchaseProcessing.GetIcon();
     }
 }

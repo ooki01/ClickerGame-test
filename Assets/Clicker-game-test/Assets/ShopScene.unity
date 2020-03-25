@@ -9555,7 +9555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24870951, g: 0.764151, b: 0.48877808, a: 0.44705883}
+  m_Color: {r: 0.57079923, g: 0.84936905, b: 0.9528302, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11399,6 +11399,8 @@ MonoBehaviour:
   YesNoPrefab: {fileID: 5436882110232928350, guid: 25fa16bb1b750a244b9d78282351a3ea,
     type: 3}
   shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
+  AnimalImage: {fileID: 0}
+  model: {fileID: 0}
 --- !u!1 &1007018938
 GameObject:
   m_ObjectHideFlags: 0
@@ -14862,7 +14864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24870951, g: 0.764151, b: 0.48877808, a: 0.44705883}
+  m_Color: {r: 0.57254905, g: 0.8509804, b: 0.9529412, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -17011,6 +17013,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   YesNoPrefab: {fileID: 0}
   shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
+  AnimalImage: {fileID: 0}
+  model: {fileID: 0}
 --- !u!1 &1529670821
 GameObject:
   m_ObjectHideFlags: 0
