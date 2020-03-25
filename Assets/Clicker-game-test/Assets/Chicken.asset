@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chicken
   m_EditorClassIdentifier: 
   kindofAnimal: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 335ccc4d982e6a34a818ca7b919afdae, type: 3}
   AnimalName: "\u306B\u308F\u3068\u308A"
   AnimalPrice: 240

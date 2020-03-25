@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
 public class SliderController : MonoBehaviour
 {
 
 	//シーン変更時にも使用するため、staticな変数で宣言
 	public static int score = 1000;
-	int MAX = 999;
+	//上限値
+	public static int UPPER_LIMIT = 999999999;
+	// 下限値
+	public static int LOWER_LIMIT = 0;
 
 	//タイマーが開始した時刻から経過した時間を示す変数
 	private float elapsedtime;

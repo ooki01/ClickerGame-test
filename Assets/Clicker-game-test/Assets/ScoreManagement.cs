@@ -11,32 +11,18 @@ public class ScoreManagement : MonoBehaviour
     private GameObject CoinText;
     //購入時の値
     private int PurchaseScore;
-    //はいボタン
-    private GameObject YesButton;
-    //いいえボタン
-    private GameObject NoButton;
     //購入後の値
     private int AfterPurchaseScore;
     //確認画面
-    private GameObject YesNoCanvas;
+    [SerializeField]
+    private GameObject YesNoPrefab;
     //　データベース
     [SerializeField]
     private ShopDataBase shopDataBase;
-    //yes
-    public bool yes = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //確認画面
-        YesNoCanvas = GameObject.Find("YesNoCanvas");
-        //確認画面を非表示
-        YesNoCanvas.SetActive(false);
-
-        //YesButtonを取得
-        YesButton = GameObject.Find("YesButton");
-        //NoButtonを取得
-        NoButton = GameObject.Find("NoButton");
 
         //保存したscoreの値を復元
         int score = PlayerPrefs.GetInt("score");
@@ -51,9 +37,6 @@ public class ScoreManagement : MonoBehaviour
 
         //scoreを保存
         PlayerPrefs.SetInt("score", score);
-
-        PurchaseScore = shopDataBase.GetProductLists()[0].GetAnimalPrice();
-        Debug.Log("PurchaseScore" + PurchaseScore);
 }
 
     // Update is called once per frame
@@ -64,27 +47,46 @@ public class ScoreManagement : MonoBehaviour
 
     public void Purchase(PurchasingInformation PurchaseProcessing)//PurchasingInformation型のPurchaseProcessingという引数(クラス名は型名となる)
     {
-        //確認画面を表示
-        YesNoCanvas.SetActive(true);
+        //YesNoPrefabオブジェクトを生成して、GameObject型のconfirmに代入
+        GameObject confirm = Instantiate(YesNoPrefab, transform.GetComponentInParent<Canvas>().transform);
+        Debug.Log(confirm);
+
+        //Dialogcontrollerを取得
+        Dialogcontroller Dc = confirm.GetComponent<Dialogcontroller>();
+
+        //ダイアログテキストを表示
+        Dc.ShowDialog(PurchaseProcessing.GetAnimalPrice() + "G" + "で購入しますか？");
+
+        //ダイアログの画像を表示
 
         //PurchaseScore変数に、onclick()に設定したファイルの価格を代入
         PurchaseScore = PurchaseProcessing.GetAnimalPrice();//引数名.関数名
+
         Debug.Log("AnimalPrice" + PurchaseProcessing.GetAnimalPrice());
 
-        //score(値)の復元
-        int score = PlayerPrefs.GetInt("score");
+        //はいボタンが押されたときの動作   //ラムダ式を使うことで、関数内で関数を定義できる
+        Dc.YesButton.onClick.AddListener(() =>
+        {
+            //score(値)の復元
+            int score = PlayerPrefs.GetInt("score");
 
-        //どうぶつを購入
-        AfterPurchaseScore = score - PurchaseScore;
+            //どうぶつを購入
+            AfterPurchaseScore = score - PurchaseScore;
 
-        //CoinTextに表示
-        CoinText.GetComponent<Text>().text = AfterPurchaseScore.ToString() + "G";
+            //CoinTextに表示
+            CoinText.GetComponent<Text>().text = AfterPurchaseScore.ToString() + "G";
 
-        //scoreを更新
-        score = AfterPurchaseScore;
+            //scoreを更新
+            score = AfterPurchaseScore;
 
-        //scoreを保存
-        PlayerPrefs.SetInt("score", score);
+            //scoreを保存
+            PlayerPrefs.SetInt("score", score);
 
+            Debug.Log(PurchaseProcessing.GetAnimalPrice() + "で購入しました");
+
+            //YesNoPrefabを破壊
+            Destroy(confirm);
+        });
     }
+
 }
