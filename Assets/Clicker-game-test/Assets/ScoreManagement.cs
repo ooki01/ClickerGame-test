@@ -25,8 +25,6 @@ public class ScoreManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
 
-        this.AnimalImage = GetComponent<Image>();
-
         //保存したscoreの値を復元
         int score = PlayerPrefs.GetInt("score");
         Debug.Log("score" + score);
