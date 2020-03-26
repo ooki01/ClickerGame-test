@@ -11,13 +11,13 @@ public class DialogController : MonoBehaviour
 
     void Start()
     {
-        m_cancel.onClick.AddListener(() => { Destroy(gameObject);  });
+        m_cancel.onClick.AddListener(() => { Destroy(gameObject); });
         Debug.Log("gameObject" + gameObject);
     }
-    
+
     void Update()
     {
-        
+
     }
 
     public void ShowDialog(string message)

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44739437, g: 0.49280202, b: 0.5508794, a: 1}
+  m_IndirectSpecularColor: {r: 0.4473949, g: 0.49280185, b: 0.5508786, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9423,7 +9423,7 @@ GameObject:
   - component: {fileID: 833333809}
   m_Layer: 5
   m_Name: Chick
-  m_TagString: Untagged
+  m_TagString: Chick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11400,7 +11400,6 @@ MonoBehaviour:
     type: 3}
   shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
   AnimalImage: {fileID: 0}
-  model: {fileID: 0}
 --- !u!1 &1007018938
 GameObject:
   m_ObjectHideFlags: 0
@@ -17014,7 +17013,6 @@ MonoBehaviour:
   YesNoPrefab: {fileID: 0}
   shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
   AnimalImage: {fileID: 0}
-  model: {fileID: 0}
 --- !u!1 &1529670821
 GameObject:
   m_ObjectHideFlags: 0
