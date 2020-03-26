@@ -8,6 +8,10 @@ public class ScoreManagement : MonoBehaviour
 {
     //CoinTextを入れておくための変数
     private GameObject CoinText;
+
+    private int numberAnimal;
+
+    private int afterNumber;
     //購入時の値
     private int PurchaseScore;
     //購入後の値
@@ -20,6 +24,12 @@ public class ScoreManagement : MonoBehaviour
     private ShopDataBase shopDataBase;
     //モーダルダイアログに表示する画像
     public Image AnimalImage;
+    //購入ボタン
+    [SerializeField]
+    private Button purchaseButton;
+    //購入テキスト
+    [SerializeField]
+    private Text purchasetext;
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +87,12 @@ public class ScoreManagement : MonoBehaviour
             //どうぶつを購入
             AfterPurchaseScore = score - PurchaseScore;
 
+            numberAnimal = PurchaseProcessing.GetAnimalnumber();
+            Debug.Log(numberAnimal);
+
+            afterNumber = numberAnimal - 1;
+            Debug.Log(afterNumber);
+
             //CoinTextに表示
             CoinText.GetComponent<Text>().text = AfterPurchaseScore.ToString() + "G";
 
@@ -87,8 +103,6 @@ public class ScoreManagement : MonoBehaviour
             PlayerPrefs.SetInt("score", score);
 
             Debug.Log(PurchaseProcessing.GetAnimalPrice() + "で購入しました");
-
-
 
             //YesNoPrefabを破壊
             Destroy(confirm);

@@ -25,7 +25,6 @@ public class PurchasingInformation : ScriptableObject
     [SerializeField]
     private int AnimalNumber;
 
-
     public Sprite GetIcon()
     {
         return icon;
