@@ -43,20 +43,7 @@ public class ScoreManagement : MonoBehaviour
 
         // 在庫を読み込む
         string json = PlayerPrefs.GetString("StockData");
-        Debug.LogFormat("json: {0}", json);
-        if (json.Length < 3)
-        {
-            // 初期データを作る（100個ずつ）
-            m_stock = new Dictionary<int, int>() //宣言と定義と同時に初期化
-            {
-                {1, 100 },//Key, Value
-                {2, 100 },
-            };
-        }
-        else
-        {
-            m_stock = JsonUtility.FromJson<Serialization<int, int>>(json).ToDictionary();
-        }
+        m_stock = JsonUtility.FromJson<Serialization<int, int>>(json).ToDictionary();
     }
 
     // Update is called once per frame
@@ -67,6 +54,10 @@ public class ScoreManagement : MonoBehaviour
 
     public void Purchase(PurchasingInformation PurchaseProcessing)//PurchasingInformation型のPurchaseProcessingという引数(クラス名は型名となる)
     {
+        m_stock = new Dictionary<int, int>() //宣言と定義と同時に初期化
+            {
+                {PurchaseProcessing.animalId, 3 },//Key, Value
+            };
 
         //YesNoPrefabオブジェクトを生成して、GameObject型のconfirmに代入
         GameObject confirm = Instantiate(YesNoPrefab, transform.GetComponentInParent<Canvas>().transform);
