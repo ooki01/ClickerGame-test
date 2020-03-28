@@ -85,7 +85,6 @@ GameObject:
   - component: {fileID: 5436882110232928347}
   - component: {fileID: 5436882110232928344}
   - component: {fileID: 8897028068887840606}
-  - component: {fileID: 7497148290590573233}
   m_Layer: 5
   m_Name: YesNoPrefab
   m_TagString: Untagged
@@ -191,22 +190,6 @@ MonoBehaviour:
   NoButton: {fileID: 5436882111203691727}
   caption: {fileID: 5436882110834394151}
   itemImage: {fileID: 8416154123186468905}
---- !u!114 &7497148290590573233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5436882110232928350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1e176c7d1615b4f9daeac8316ede32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 8416154123186468905}
-  YesNoPrefab: {fileID: 5436882110232928350}
-  shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
-  AnimalImage: {fileID: 8416154123186468905}
 --- !u!1 &5436882110664892145
 GameObject:
   m_ObjectHideFlags: 0

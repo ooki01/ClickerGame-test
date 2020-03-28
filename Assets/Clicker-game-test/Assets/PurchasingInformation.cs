@@ -8,7 +8,6 @@ using System;
 public class PurchasingInformation : ScriptableObject
 {
 
-
     //どうぶつのアイコン
     [SerializeField]
     private Sprite icon;
@@ -21,9 +20,8 @@ public class PurchasingInformation : ScriptableObject
     [SerializeField]
     private int AnimalPrice;
 
-    //どうぶつの価格
-    [SerializeField]
-    private int AnimalNumber;
+    //どうぶつの在庫
+    public int animalId;
 
     public Sprite GetIcon()
     {
@@ -38,10 +36,6 @@ public class PurchasingInformation : ScriptableObject
     public int GetAnimalPrice()
     {
         return AnimalPrice;
-    }
-    public int GetAnimalnumber()
-    {
-        return AnimalNumber;
     }
 
 } // class ParameterTable

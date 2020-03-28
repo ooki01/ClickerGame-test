@@ -9,8 +9,6 @@ public class ScoreManagement : MonoBehaviour
     //CoinTextを入れておくための変数
     private GameObject CoinText;
 
-    private int numberAnimal;
-
     private int afterNumber;
     //購入時の値
     private int PurchaseScore;
@@ -30,6 +28,8 @@ public class ScoreManagement : MonoBehaviour
     //購入テキスト
     [SerializeField]
     private Text purchasetext;
+    //どうぶつの在庫を示す
+    Dictionary<int, int> m_stock;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +46,23 @@ public class ScoreManagement : MonoBehaviour
 
         //scoreを保存
         PlayerPrefs.SetInt("score", score);
+
+        // 在庫を読み込む
+        string json = PlayerPrefs.GetString("StockData");
+        Debug.LogFormat("json: {0}", json);
+        if (json.Length < 3)
+        {
+            // 初期データを作る（100個ずつ）
+            m_stock = new Dictionary<int, int>() //宣言と定義と同時に初期化
+            {
+                { 1, 100 },//Key, Value
+                { 2, 100 },
+            };
+        }
+        else
+        {
+            m_stock = JsonUtility.FromJson<Serialization<int, int>>(json).ToDictionary();
+        }
     }
 
     // Update is called once per frame
@@ -81,17 +98,17 @@ public class ScoreManagement : MonoBehaviour
         //はいボタンが押されたときの動作   //ラムダ式を使うことで、関数内で関数を定義できる
         dc.YesButton.onClick.AddListener(() =>
         {
+            // 在庫を減らす
+            m_stock[PurchaseProcessing.animalId]--; // 在庫がなくなった時の処理はしていない。減らすだけ。
+            string json = JsonUtility.ToJson(new Serialization<int, int>(m_stock));//new クラス名（コンストラクタ） //JsonUtility.ToJsonでJSON 形式にシリアライズ
+            Debug.LogFormat("stock: {0}", json); 
+            PlayerPrefs.SetString("StockData", json);
+
             //score(値)の復元
             int score = PlayerPrefs.GetInt("score");
 
             //どうぶつを購入
             AfterPurchaseScore = score - PurchaseScore;
-
-            numberAnimal = PurchaseProcessing.GetAnimalnumber();
-            Debug.Log(numberAnimal);
-
-            afterNumber = numberAnimal - 1;
-            Debug.Log(afterNumber);
 
             //CoinTextに表示
             CoinText.GetComponent<Text>().text = AfterPurchaseScore.ToString() + "G";

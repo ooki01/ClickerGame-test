@@ -14,7 +14,6 @@ public class Dialogcontroller : MonoBehaviour
     [SerializeField] Text caption;
     //インスペクタで設定するための変数
     public Image itemImage;
-
     // Start is called before the first frame update
     void Start()
     {

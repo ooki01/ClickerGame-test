@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 48799941}
   - component: {fileID: 48799940}
   m_Layer: 5
-  m_Name: ' PurchaseText'
+  m_Name: ' PurchaseText1'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2405,7 +2405,6 @@ GameObject:
   - component: {fileID: 197296538}
   - component: {fileID: 197296537}
   - component: {fileID: 197296536}
-  - component: {fileID: 197296539}
   m_Layer: 5
   m_Name: Chicken
   m_TagString: Untagged
@@ -2490,23 +2489,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197296534}
   m_CullTransparentMesh: 0
---- !u!114 &197296539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197296534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1e176c7d1615b4f9daeac8316ede32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  YesNoPrefab: {fileID: 0}
-  shopDataBase: {fileID: 0}
-  AnimalImage: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  purchasetext: {fileID: 1154308669}
 --- !u!1 &217668926
 GameObject:
   m_ObjectHideFlags: 0
@@ -9439,7 +9421,6 @@ GameObject:
   - component: {fileID: 833333811}
   - component: {fileID: 833333810}
   - component: {fileID: 833333809}
-  - component: {fileID: 833333808}
   m_Layer: 5
   m_Name: Chick
   m_TagString: Chick
@@ -9469,23 +9450,6 @@ RectTransform:
   m_AnchoredPosition: {x: 92, y: -4.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &833333808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833333806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1e176c7d1615b4f9daeac8316ede32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  YesNoPrefab: {fileID: 0}
-  shopDataBase: {fileID: 0}
-  AnimalImage: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  purchasetext: {fileID: 48799940}
 --- !u!114 &833333809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18797,7 +18761,7 @@ GameObject:
   - component: {fileID: 1707236398}
   - component: {fileID: 1707236401}
   m_Layer: 5
-  m_Name: ' PurchaseButton'
+  m_Name: ' PurchaseButton1'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

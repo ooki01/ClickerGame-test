@@ -3,7 +3,13 @@ guid: 3a1e176c7d1615b4f9daeac8316ede32
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - YesNoPrefab: {fileID: 5436882110232928350, guid: 25fa16bb1b750a244b9d78282351a3ea,
+      type: 3}
+  - shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
+  - AnimalImage: {instanceID: 0}
+  - purchaseButton: {instanceID: 0}
+  - purchasetext: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
