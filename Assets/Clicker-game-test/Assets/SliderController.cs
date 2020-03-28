@@ -7,11 +7,7 @@ public class SliderController : MonoBehaviour
 {
 
 	//シーン変更時にも使用するため、staticな変数で宣言
-	public static int score = 1000;
-	//上限値
-	public static int UPPER_LIMIT = 999999999;
-	// 下限値
-	public static int LOWER_LIMIT = 0;
+	[Range(0, 9999)] public static int score = 1000;
 
 	//タイマーが開始した時刻から経過した時間を示す変数
 	private float elapsedtime;
@@ -258,6 +254,9 @@ public class SliderController : MonoBehaviour
 		if (iscount == true)
 		{
 			iscount = false;
+			PlayerPrefs.SetFloat("SliderSeconds", SliderSeconds);
+			PlayerPrefs.SetString("DateTime.Now", System.DateTime.Now.ToString());
+			PlayerPrefs.Save();
 			//やめるボタンの非表示
 			ResetButton.gameObject.GetComponent<CanvasGroup>().alpha = 0;
 			ResetButton.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;

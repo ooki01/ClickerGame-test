@@ -9,7 +9,6 @@ public class ScoreManagement : MonoBehaviour
     //CoinTextを入れておくための変数
     private GameObject CoinText;
 
-    private int afterNumber;
     //購入時の値
     private int PurchaseScore;
     //購入後の値
@@ -22,12 +21,7 @@ public class ScoreManagement : MonoBehaviour
     private ShopDataBase shopDataBase;
     //モーダルダイアログに表示する画像
     public Image AnimalImage;
-    //購入ボタン
-    [SerializeField]
-    private Button purchaseButton;
-    //購入テキスト
-    [SerializeField]
-    private Text purchasetext;
+
     //どうぶつの在庫を示す
     Dictionary<int, int> m_stock;
 
@@ -55,8 +49,8 @@ public class ScoreManagement : MonoBehaviour
             // 初期データを作る（100個ずつ）
             m_stock = new Dictionary<int, int>() //宣言と定義と同時に初期化
             {
-                { 1, 100 },//Key, Value
-                { 2, 100 },
+                {1, 100 },//Key, Value
+                {2, 100 },
             };
         }
         else
@@ -73,6 +67,7 @@ public class ScoreManagement : MonoBehaviour
 
     public void Purchase(PurchasingInformation PurchaseProcessing)//PurchasingInformation型のPurchaseProcessingという引数(クラス名は型名となる)
     {
+
         //YesNoPrefabオブジェクトを生成して、GameObject型のconfirmに代入
         GameObject confirm = Instantiate(YesNoPrefab, transform.GetComponentInParent<Canvas>().transform);
 
@@ -84,8 +79,6 @@ public class ScoreManagement : MonoBehaviour
 
         //スプライト化したAnimalImageをonclick()に設定したファイルの画像を代入
         AnimalImage.sprite = PurchaseProcessing.GetIcon();
-        Debug.Log(AnimalImage.sprite);
-        Debug.Log(PurchaseProcessing.GetIcon());
 
         //ダイアログテキストを表示
         dc.ShowDialog(PurchaseProcessing.GetAnimalPrice() + "G" + "で購入しますか？");
@@ -100,8 +93,9 @@ public class ScoreManagement : MonoBehaviour
         {
             // 在庫を減らす
             m_stock[PurchaseProcessing.animalId]--; // 在庫がなくなった時の処理はしていない。減らすだけ。
+            Debug.Log(m_stock);
             string json = JsonUtility.ToJson(new Serialization<int, int>(m_stock));//new クラス名（コンストラクタ） //JsonUtility.ToJsonでJSON 形式にシリアライズ
-            Debug.LogFormat("stock: {0}", json); 
+            Debug.LogFormat("stock: {0}", json);
             PlayerPrefs.SetString("StockData", json);
 
             //score(値)の復元
@@ -119,7 +113,7 @@ public class ScoreManagement : MonoBehaviour
             //scoreを保存
             PlayerPrefs.SetInt("score", score);
 
-            Debug.Log(PurchaseProcessing.GetAnimalPrice() + "で購入しました");
+            Debug.Log(PurchaseProcessing.GetAnimalPrice() + "G" + "で購入しました");
 
             //YesNoPrefabを破壊
             Destroy(confirm);
