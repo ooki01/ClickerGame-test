@@ -21,14 +21,16 @@ public class ScoreManagement : MonoBehaviour
     private ShopDataBase shopDataBase;
     //モーダルダイアログに表示する画像
     public Image AnimalImage;
-
-    //どうぶつの在庫を示す
-    Dictionary<int, int> m_stock;
+    //購入ボタン
+    [SerializeField]
+    private Button purchaseButton;
+    //購入テキスト
+    [SerializeField]
+    private Text purchaseText;
 
     // Start is called before the first frame update
     void Start()
     {
-
         //保存したscoreの値を復元
         int score = PlayerPrefs.GetInt("score");
 
@@ -40,24 +42,15 @@ public class ScoreManagement : MonoBehaviour
 
         //scoreを保存
         PlayerPrefs.SetInt("score", score);
-
-        // 在庫を読み込む
-        string json = PlayerPrefs.GetString("StockData");
-        m_stock = JsonUtility.FromJson<Serialization<int, int>>(json).ToDictionary();
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void Purchase(PurchasingInformation PurchaseProcessing)//PurchasingInformation型のPurchaseProcessingという引数(クラス名は型名となる)
     {
-        m_stock = new Dictionary<int, int>() //宣言と定義と同時に初期化
-            {
-                {PurchaseProcessing.animalId, 3 },//Key, Value
-            };
 
         //YesNoPrefabオブジェクトを生成して、GameObject型のconfirmに代入
         GameObject confirm = Instantiate(YesNoPrefab, transform.GetComponentInParent<Canvas>().transform);
@@ -82,13 +75,6 @@ public class ScoreManagement : MonoBehaviour
         //はいボタンが押されたときの動作   //ラムダ式を使うことで、関数内で関数を定義できる
         dc.YesButton.onClick.AddListener(() =>
         {
-            // 在庫を減らす
-            m_stock[PurchaseProcessing.animalId]--; // 在庫がなくなった時の処理はしていない。減らすだけ。
-            Debug.Log(m_stock);
-            string json = JsonUtility.ToJson(new Serialization<int, int>(m_stock));//new クラス名（コンストラクタ） //JsonUtility.ToJsonでJSON 形式にシリアライズ
-            Debug.LogFormat("stock: {0}", json);
-            PlayerPrefs.SetString("StockData", json);
-
             //score(値)の復元
             int score = PlayerPrefs.GetInt("score");
 
@@ -108,6 +94,8 @@ public class ScoreManagement : MonoBehaviour
 
             //YesNoPrefabを破壊
             Destroy(confirm);
+
+            
         });
     }
 }

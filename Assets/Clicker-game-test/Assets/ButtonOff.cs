@@ -12,31 +12,14 @@ public class ButtonOff : MonoBehaviour
     //購入テキスト
     [SerializeField]
     private Text purchaseText;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        string json = PlayerPrefs.GetString("StockData");
-        Debug.LogFormat("json: {0}", json);
-        
-        off_stock = JsonUtility.FromJson<Serialization<int, int>>(json).ToDictionary();
     }
     
     // Update is called once per frame
     void Update()
     {
-
-    }
-    
-    public void NoPurchase(PurchasingInformation noPuruchase)
-    {
-        Debug.Log("qqqq");
-        Debug.Log(noPuruchase.animalId);
-        Debug.Log(off_stock);
-        Debug.Log(off_stock[noPuruchase.animalId]);
-        if (off_stock[noPuruchase.animalId] == 0)
-        {
-            Debug.Log("aaa");
-        }
     }
 }

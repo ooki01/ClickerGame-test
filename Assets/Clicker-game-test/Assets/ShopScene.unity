@@ -2505,8 +2505,6 @@ MonoBehaviour:
   YesNoPrefab: {fileID: 0}
   shopDataBase: {fileID: 0}
   AnimalImage: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  purchasetext: {fileID: 1154308669}
 --- !u!1 &217668926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5700,6 +5698,7 @@ GameObject:
   - component: {fileID: 512690614}
   - component: {fileID: 512690613}
   - component: {fileID: 512690612}
+  - component: {fileID: 512690615}
   m_Layer: 5
   m_Name: ' PurchaseButton2'
   m_TagString: Untagged
@@ -5814,6 +5813,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512690610}
   m_CullTransparentMesh: 0
+--- !u!114 &512690615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512690610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c594dd419ec8746aef5894e66056ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  purchaseButton: {fileID: 512690612}
+  purchaseText: {fileID: 1154308669}
 --- !u!1 &512854037
 GameObject:
   m_ObjectHideFlags: 0
@@ -9478,14 +9491,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 833333806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1e176c7d1615b4f9daeac8316ede32, type: 3}
+  m_Script: {fileID: 11500000, guid: a7c594dd419ec8746aef5894e66056ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YesNoPrefab: {fileID: 0}
-  shopDataBase: {fileID: 0}
-  AnimalImage: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  purchasetext: {fileID: 48799940}
+  purchaseButton: {fileID: 1707236398}
+  purchaseText: {fileID: 48799940}
 --- !u!114 &833333809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11436,8 +11446,6 @@ MonoBehaviour:
     type: 3}
   shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
   AnimalImage: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  purchasetext: {fileID: 0}
 --- !u!1 &1007018938
 GameObject:
   m_ObjectHideFlags: 0
@@ -17051,8 +17059,6 @@ MonoBehaviour:
   YesNoPrefab: {fileID: 0}
   shopDataBase: {fileID: 11400000, guid: da5c7b9fe198c4ca6bbb9cfad9890158, type: 2}
   AnimalImage: {fileID: 0}
-  purchaseButton: {fileID: 0}
-  purchasetext: {fileID: 0}
 --- !u!1 &1529670821
 GameObject:
   m_ObjectHideFlags: 0
@@ -18865,6 +18871,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 993428574}
         m_MethodName: Purchase
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 1555157005bd64ad7b5b4ac7dcfda0aa,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: PurchasingInformation, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 833333808}
+        m_MethodName: NoPurchase
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 1555157005bd64ad7b5b4ac7dcfda0aa,
