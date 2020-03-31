@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+/// <summary>
+/// このスクリプトは何故か ShopScene の中の「２つ」のオブジェクトにアタッチされている。片方は間違えてアタッチされているんじゃないかと推測している。
+/// </summary>
 public class ScoreManagement : MonoBehaviour
 {
     //CoinTextを入れておくための変数
     private GameObject CoinText;
-
     //購入時の値
     private int PurchaseScore;
     //購入後の値
@@ -21,16 +23,14 @@ public class ScoreManagement : MonoBehaviour
     private ShopDataBase shopDataBase;
     //モーダルダイアログに表示する画像
     public Image AnimalImage;
-    //購入ボタン
-    [SerializeField]
-    private Button purchaseButton;
-    //購入テキスト
-    [SerializeField]
-    private Text purchaseText;
+
+    public GameObject animal;
+    Dictionary<int, int> m_stock;
 
     // Start is called before the first frame update
     void Start()
     {
+
         //保存したscoreの値を復元
         int score = PlayerPrefs.GetInt("score");
 
@@ -42,16 +42,33 @@ public class ScoreManagement : MonoBehaviour
 
         //scoreを保存
         PlayerPrefs.SetInt("score", score);
+
+        // 在庫を読み込む
+        string json = PlayerPrefs.GetString("StockData");
+        Debug.LogFormat("json: {0}", json);
+        if (json.Length < 3)
+        {
+            // 初期データを作る（100個ずつ）
+            m_stock = new Dictionary<int, int>()
+            {
+                { 1, 100 },
+                { 2, 100 },
+            };
+        }
+        else
+        {
+            m_stock = JsonUtility.FromJson<Serialization<int, int>>(json).ToDictionary();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
-    public void Purchase(PurchasingInformation PurchaseProcessing)//PurchasingInformation型のPurchaseProcessingという引数(クラス名は型名となる)
+    public void Purchase(ShopItemController item)
     {
-
         //YesNoPrefabオブジェクトを生成して、GameObject型のconfirmに代入
         GameObject confirm = Instantiate(YesNoPrefab, transform.GetComponentInParent<Canvas>().transform);
 
@@ -59,22 +76,33 @@ public class ScoreManagement : MonoBehaviour
         Dialogcontroller dc = confirm.GetComponent<Dialogcontroller>();
 
         //アイテムイメージをAnimalImageに代入
-        AnimalImage = dc.itemImage;
+        AnimalImage =dc.itemImage;
 
         //スプライト化したAnimalImageをonclick()に設定したファイルの画像を代入
-        AnimalImage.sprite = PurchaseProcessing.GetIcon();
+        AnimalImage.sprite = item.Item.GetIcon();
+        Debug.Log(AnimalImage.sprite);
+        Debug.Log(item.Item.GetIcon());
 
         //ダイアログテキストを表示
-        dc.ShowDialog(PurchaseProcessing.GetAnimalPrice() + "G" + "で購入しますか？");
+        dc.ShowDialog(item.Item.GetAnimalPrice() + "G" + "で購入しますか？");
 
         //PurchaseScore変数に、onclick()に設定したファイルの価格を代入
-        PurchaseScore = PurchaseProcessing.GetAnimalPrice();//引数名.関数名
+        PurchaseScore = item.Item.GetAnimalPrice();//引数名.関数名
 
-        Debug.Log("AnimalPrice" + PurchaseProcessing.GetAnimalPrice());
+        Debug.Log("AnimalPrice" + item.Item.GetAnimalPrice());
 
         //はいボタンが押されたときの動作   //ラムダ式を使うことで、関数内で関数を定義できる
         dc.YesButton.onClick.AddListener(() =>
         {
+            //売り切れの表示
+            item.OutOfStock();
+
+            // 在庫を減らす
+            Debug.Log(item.Item.animalId);
+            m_stock[item.Item.animalId]--; // 在庫がなくなった時の処理はしていない。減らすだけ。
+            string json = JsonUtility.ToJson(new Serialization<int, int>(m_stock));
+            Debug.LogFormat("stock: {0}", json);
+            PlayerPrefs.SetString("StockData", json);
             //score(値)の復元
             int score = PlayerPrefs.GetInt("score");
 
@@ -90,12 +118,10 @@ public class ScoreManagement : MonoBehaviour
             //scoreを保存
             PlayerPrefs.SetInt("score", score);
 
-            Debug.Log(PurchaseProcessing.GetAnimalPrice() + "G" + "で購入しました");
+            Debug.Log(item.Item.GetAnimalPrice() + "で購入しました");
 
             //YesNoPrefabを破壊
             Destroy(confirm);
-
-            
         });
     }
 }

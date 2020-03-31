@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Clicker-game-test/Assets/GameScene2.unity
+    path: Assets/Clicker-game-test/Assets/GameScene.unity
     guid: 54730ed9245c6cc439ff8207e6abcac5
   - enabled: 1
     path: Assets/Clicker-game-test/Assets/ShopScene.unity

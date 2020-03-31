@@ -72,6 +72,7 @@ public class SliderController : MonoBehaviour
 
 		if (PlayerPrefs.HasKey("SliderSeconds"))
 		{
+			Debug.Log("スライダーのびょうすうあるよ");
 			//カウントを開始
 			iscount = true;
 
@@ -145,7 +146,6 @@ public class SliderController : MonoBehaviour
 			Debug.Log("復元後CountValue" + CountValue);
 			Debug.Log("復元後score" + score);
 		}
-
 
 		TimeSlider = GetComponent<Slider>();
 
@@ -254,9 +254,10 @@ public class SliderController : MonoBehaviour
 		if (iscount == true)
 		{
 			iscount = false;
-			PlayerPrefs.SetFloat("SliderSeconds", SliderSeconds);
-			PlayerPrefs.SetString("DateTime.Now", System.DateTime.Now.ToString());
+			PlayerPrefs.SetFloat("m_SliderSeconds", SliderSeconds);
+			PlayerPrefs.SetFloat("m_CountValue", CountValue);
 			PlayerPrefs.Save();
+			Debug.Log("とまったよ");
 			//やめるボタンの非表示
 			ResetButton.gameObject.GetComponent<CanvasGroup>().alpha = 0;
 			ResetButton.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;

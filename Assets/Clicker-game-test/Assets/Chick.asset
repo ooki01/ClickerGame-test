@@ -16,3 +16,4 @@ MonoBehaviour:
   AnimalName: "\u3072\u3088\u3053"
   AnimalPrice: 120
   animalId: 1
+  animal_prefab: {fileID: 166016, guid: f657c58adb4c219419ae056411d88e27, type: 3}
